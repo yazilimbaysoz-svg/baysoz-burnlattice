@@ -1,0 +1,9 @@
+# Baysöz Labs <baysozlabs@proton.me>
+.venv
+venv
+dist
+build
+*.egg-info
+.pytest_cache
+.ruff_cache
+.git

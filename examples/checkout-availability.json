@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "attribution": "Baysöz Labs <baysozlabs@proton.me>",
+  "service": "checkout-api",
+  "description": "Checkout request success ratio over a rolling 30 day window",
+  "labels": {
+    "env": "prod",
+    "team": "payments"
+  },
+  "slo": {
+    "name": "checkout_availability",
+    "objective": 99.9,
+    "window": "30d",
+    "sli": {
+      "type": "ratio",
+      "good": {
+        "metric": "http_requests_total",
+        "op": "rate",
+        "matchers": {
+          "job": "checkout-api",
+          "status": "~2.."
+        }
+      },
+      "total": {
+        "metric": "http_requests_total",
+        "op": "rate",
+        "matchers": {
+          "job": "checkout-api"
+        }
+      }
+    },
+    "alerting": {
+      "page": {
+        "severity": "critical",
+        "tiers": ["fast_1h_6h", "fast_6h_1d"]
+      },
+      "ticket": {
+        "severity": "warning",
+        "tiers": ["slow_1d_3d", "slow_3d_30d"]
+      }
+    }
+  }
+}

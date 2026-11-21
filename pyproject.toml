@@ -1,0 +1,42 @@
+# Baysöz Labs <baysozlabs@proton.me>
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "burnlattice"
+version = "1.0.0"
+description = "Deterministic SLO burn-rate policy compiler and CI drift gate - Baysöz Labs <baysozlabs@proton.me>"
+readme = "README.md"
+requires-python = ">=3.13"
+license = { file = "LICENSE" }
+authors = [{ name = "Baysöz Labs", email = "baysozlabs@proton.me" }]
+keywords = ["observability", "slo", "sre", "prometheus", "ci", "sarif"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Monitoring",
+]
+dependencies = ["PyYAML>=6.0.2"]
+
+[project.urls]
+Homepage = "https://github.com/yazilimbaysoz-svg/baysoz-burnlattice"
+Issues = "https://github.com/yazilimbaysoz-svg/baysoz-burnlattice/issues"
+
+[project.scripts]
+burnlattice = "burnlattice.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/burnlattice"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+exclude = [".venv", "dist"]
